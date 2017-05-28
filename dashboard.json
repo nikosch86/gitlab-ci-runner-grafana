@@ -44,6 +44,7 @@
   "hideControls": false,
   "id": null,
   "links": [],
+  "refresh": "10s",
   "rows": [
     {
       "collapse": false,
@@ -289,7 +290,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum (ci_runner_errors{instance=~\"$runner\"}) by (level)",
+              "expr": "increase(ci_runner_errors{instance=~\"$runner\"}[10m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 2,
@@ -358,7 +359,7 @@
         "multi": true,
         "name": "runner",
         "options": [],
-        "query": "label_values(ci_runner_builds, instance)",
+        "query": "label_values(ci_runner_errors, instance)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
@@ -401,5 +402,5 @@
   },
   "timezone": "browser",
   "title": "Gitlab Runner Service",
-  "version": 9
+  "version": 15
 }
