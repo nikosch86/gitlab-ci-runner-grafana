@@ -107,11 +107,11 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum (ci_runner_builds{instance=~\"$runner\",state=\"running\"}) by (executor_stage)",
+              "expr": "sum (gitlab_runner_builds{instance=~\"$runner\",state=\"running\"}) by (executor_stage)",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "{{executor_stage}}",
-              "metric": "ci_runner_builds",
+              "metric": "gitlab_runner_builds",
               "refId": "A",
               "step": 60
             }
@@ -198,12 +198,12 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ci_runner_builds{instance=~\"$runner\", state=\"pending\"}",
+              "expr": "gitlab_runner_builds{instance=~\"$runner\", state=\"pending\"}",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 2,
               "legendFormat": "{{executor_stage}}",
-              "metric": "ci_runner_builds",
+              "metric": "gitlab_runner_builds",
               "refId": "A",
               "step": 60
             }
@@ -290,7 +290,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "increase(ci_runner_errors{instance=~\"$runner\"}[10m])",
+              "expr": "increase(gitlab_runner_errors_total{instance=~\"$runner\"}[10m])",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 2,
@@ -359,7 +359,7 @@
         "multi": true,
         "name": "runner",
         "options": [],
-        "query": "label_values(ci_runner_errors, instance)",
+        "query": "label_values(gitlab_runner_errors_total, instance)",
         "refresh": 1,
         "regex": "",
         "sort": 0,
